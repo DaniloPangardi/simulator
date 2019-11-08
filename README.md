@@ -23,5 +23,5 @@
 * Utilizando um interpretador de comandos bash
 * ./run-simulator-app.sh
 
-### Swaggwe UI ###
+### Swagger UI ###
 * http://localhost:8082/swagger-ui.html
