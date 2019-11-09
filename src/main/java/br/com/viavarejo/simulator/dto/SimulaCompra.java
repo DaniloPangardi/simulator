@@ -27,7 +27,7 @@ public class SimulaCompra {
 	}
 	
 	public BigDecimal calculaValorDaParcela(final BigDecimal valorLiquido, final int quantidadeParcelas) throws Exception {
-		return valorLiquido.divide(new BigDecimal(quantidadeParcelas));
+		return valorLiquido.divide(new BigDecimal(quantidadeParcelas), BigDecimal.ROUND_HALF_EVEN) .setScale(2, BigDecimal.ROUND_HALF_EVEN);
 	}
 	
 	public BigDecimal calculaValorDaParcelaAcrescida(final BigDecimal valorParcela, final BigDecimal taxaMensalAcumulada) throws Exception {
