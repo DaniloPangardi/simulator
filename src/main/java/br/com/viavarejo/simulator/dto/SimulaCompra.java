@@ -1,7 +1,9 @@
 package br.com.viavarejo.simulator.dto;
 
 import java.math.BigDecimal;
-import java.util.Optional;
+
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -10,18 +12,18 @@ import lombok.Setter;
 @Setter
 public class SimulaCompra {
 	
+	@Valid
+	@NotNull(message="* Informe um Produto!")
 	private Produto produto;
+	
+	@Valid
+	@NotNull(message="* Informe a condição de pagamento!")
 	private CondicaoPagamento condicaoPagamento;
 	
 	public BigDecimal calculaValorLiquido() throws Exception {
-		final BigDecimal valorProduto = Optional.ofNullable(produto.getValor())
-			       .orElseThrow(() -> new NullPointerException("Informe o valor do produto!"));
-		
-		final BigDecimal valorEntrada = Optional.ofNullable(condicaoPagamento.getValorEntrada())
-				                                .orElse(BigDecimal.ZERO);
 
-		if(valorProduto.compareTo(valorEntrada) > 0) {
-			return valorProduto.subtract(valorEntrada);
+		if(produto.getValor().compareTo(condicaoPagamento.getValorEntrada()) > 0) {
+			return produto.getValor().subtract(condicaoPagamento.getValorEntrada());
 		}
 		throw new IllegalArgumentException("O valor da entrada deve ser menor que o valor do produto!");
 	}

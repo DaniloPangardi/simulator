@@ -1,7 +1,10 @@
 package br.com.viavarejo.simulator.resources;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +29,10 @@ public class SimulaCompraResource {
 	    @ApiResponse(code = 400, message = "Foi gerada uma exceção"),
 	})
 	@PostMapping
-	public ResponseEntity<?> simulaCompra(@RequestBody SimulaCompra request) throws Exception {
+	public ResponseEntity<?> simulaCompra(@Valid @RequestBody SimulaCompra request, Errors errors) throws Exception {
+		if(errors.hasErrors()) {
+			return ResponseEntity.badRequest().body(errors.getAllErrors());
+		}
 		return ResponseEntity.ok().body(simulaCompraService.simular(request));
 	}
 

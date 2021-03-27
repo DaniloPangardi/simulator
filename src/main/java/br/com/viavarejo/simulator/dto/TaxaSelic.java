@@ -13,7 +13,7 @@ public class TaxaSelic {
 	private BigDecimal valor;
 	
 	
-	public BigDecimal calculaTaxaMensalAcumulada(final List<TaxaSelic> selicList) throws Exception {
+	public static BigDecimal calculaTaxaMensalAcumulada(final List<TaxaSelic> selicList) throws Exception {
 		return selicList.stream()
 					.map(t -> t.getValor())
 					.reduce(BigDecimal::add)

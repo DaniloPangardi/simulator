@@ -1,4 +1,4 @@
-package br.com.viavarejo.simulator;
+package br.com.viavarejo.simulator.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
